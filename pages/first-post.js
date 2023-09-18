@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image';
+import Layout from '../components/layout';
 
 
 const FirstPost = () => {
   return (
-    <>
+    <Layout>
         <img src="/images/profile.jpg" alt="Your Name" />
         <Image
     src="/images/profile.jpg" // Route of the image file
@@ -13,8 +14,7 @@ const FirstPost = () => {
     alt="Your Name"
   />
         <div>First Post</div>
-    </>
-    
+    </Layout>
   )
 }
 
