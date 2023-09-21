@@ -3,7 +3,10 @@ import Image from 'next/image';
 import Layout from '../components/layout';
 
 
-const FirstPost = () => {
+const FirstPost = (props) => {
+  const { dataUsers } = props;
+  // Cara cek apakah ini di generate secara server side, kita bisa mengconsole disini
+  console.log(dataUsers)
   return (
     <Layout>
         <img src="/images/profile.jpg" alt="Your Name" />
@@ -14,8 +17,27 @@ const FirstPost = () => {
     alt="Your Name"
   />
         <div>First Post</div>
+        <p>Users Page</p>
+      {dataUsers.map((user,i) => {
+        return (
+          <div key={i}>
+            <p>{user.name}</p>
+            <p>{user.email}</p>
+          </div>
+        );
+      })}
     </Layout>
   )
 }
 
 export default FirstPost
+
+export async function getStaticProps() {
+  const res = await fetch("http://jsonplaceholder.typicode.com/users");
+  const dataUsers = await res.json();
+  return {
+    props: {
+      dataUsers,
+    },
+  };
+}
