@@ -1,12 +1,10 @@
 import React from 'react'
 import Image from 'next/image';
 import Layout from '../components/layout';
-
+import User from "../components/user"
 
 const FirstPost = (props) => {
   const { dataUsers } = props;
-  // Cara cek apakah ini di generate secara server side, kita bisa mengconsole disini
-  console.log(dataUsers)
   return (
     <Layout>
         <img src="/images/profile.jpg" alt="Your Name" />
@@ -21,8 +19,7 @@ const FirstPost = (props) => {
       {dataUsers.map((user,i) => {
         return (
           <div key={i}>
-            <p>{user.name}</p>
-            <p>{user.email}</p>
+           <User user={user}/>
           </div>
         );
       })}
